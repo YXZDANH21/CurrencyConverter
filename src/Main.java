@@ -1,5 +1,8 @@
 import org.json.JSONObject;
+
+import java.awt.*;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -8,7 +11,7 @@ import java.util.HashMap;
 import java.util.Scanner;
 import javax.swing.*;
 
-public class Main {
+public class Main{
     public static void main(String[] args) throws IOException {
         HashMap<Integer, String> currencyCodes = new HashMap<Integer, String>();
 
@@ -69,8 +72,39 @@ public class Main {
     public static void userInterface()  {
         JFrame frame = new JFrame("Currency Converter");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(300, 500);
+        frame.setResizable(false);
+
+        JPanel titlePanel = new JPanel();
+        titlePanel.setBackground(Color.white);
+        titlePanel.setBounds(0,0,600, 125);
+
+        JLabel title1 = new JLabel("Currency");
+        title1.setFont(new Font("emilio 20", Font.PLAIN, 42));
+        title1.setBounds(155,0, 600, 70);
+        JLabel title2 = new JLabel("Converter");
+        title2.setFont(new Font("emilio 20", Font.BOLD, 42));
+        title2.setBounds(142,40, 600, 80);
+
+        titlePanel.add(title1);
+        titlePanel.add(title2);
+
+        JPanel currencyPanel = new JPanel();
+        currencyPanel.setBackground(Color.green);
+        currencyPanel.setBounds(0, 150, 600, 400);
+
+        String[] currencies = {"USD", "GBP", "JPY", "EUR", "CAD", "AUD", "NZD", "CHF"};
+        JComboBox currency1 = new JComboBox(currencies);
+        JComboBox currency2 = new JComboBox(currencies);
+
+        currencyPanel.add(currency1);
+        currencyPanel.add(currency2);
+
+        frame.setSize(600, 800);
+        frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+        frame.add(titlePanel);
+        frame.add(currencyPanel);
+
 
     }
 }
